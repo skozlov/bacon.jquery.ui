@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Bacon.$.UI.Dialog examples</title>
+	<link rel="stylesheet" href="resources/jquery-ui-1.12.1.custom/jquery-ui.min.css" />
+	<script src="resources/jquery-3.1.1.min.js"></script>
+	<script src="resources/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+	<script src="resources/Bacon.min.js"></script>
+	<script src="resources/bacon.model.min.js"></script>
+	<script src="resources/bacon.jquery.min.js"></script>
+	<script src="../bacon.jquery.ui.js"></script>
+	<script>
+
+		$(function(){
+			var dialog = new Bacon.$.UI.Dialog($('#dialog'), {
+				autoOpen: false,
+				width: 'auto'
+			});
+
+			var openDialogTrigger = $('.openDialogTrigger');
+			var closeDialogTrigger = $('.closeDialogTrigger');
+
+			dialog.open.addSource(openDialogTrigger.asEventStream('click').map(true)
+					.merge(closeDialogTrigger.asEventStream('click').map(false)));
+
+			dialog.open.assign($('.status'), 'text');
+		});
+
+	</script>
+</head>
+<body>
+
+<div id="dialog">Dialog</div>
+<button class="openDialogTrigger">Open</button>
+<button class="closeDialogTrigger">Close</button>
+<span class="status"></span>
+
+</body>
+</html>
