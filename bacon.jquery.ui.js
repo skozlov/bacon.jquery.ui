@@ -9,6 +9,8 @@
 	}
 	Bacon.$.UI = new function(){
 		this.Dialog = function(jqObject, options){
+			this.jq = jqObject;
+
 			jqObject.dialog(options);
 
 			function isOpen(){
