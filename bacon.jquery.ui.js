@@ -19,7 +19,7 @@
 
 			this.open = Bacon.Binding({
 				initValue: isOpen(),
-				get: isOpen(),
+				get: isOpen,
 				set: function(open){
 					if(open ^ isOpen()) {
 						if (open) {
